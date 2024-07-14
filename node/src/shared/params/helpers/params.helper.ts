@@ -63,7 +63,7 @@ export type ParseArgsFromParamsProps = {
   command: Command;
 };
 
-export const parseArgsFromParams = ({
+export const mapArgsFromParams = ({
   args,
   command,
 }: ParseArgsFromParamsProps) => {

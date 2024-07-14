@@ -4,7 +4,7 @@ import { Args } from "./shared/args/types/args.type";
 import { commandService } from "./shared/commands/services/command.service";
 import { VerboseCommand } from "./shared/commands/types/command.type";
 import {
-  parseArgsFromParams,
+  mapArgsFromParams,
   validParams,
 } from "./shared/params/helpers/params.helper";
 
@@ -47,7 +47,7 @@ export const entrypoint = () => {
     return onInvalidParams({ args, command });
   } else {
     return command.entrypoint({
-      args: parseArgsFromParams({ args, command }),
+      args: mapArgsFromParams({ args, command }),
       command,
     });
   }
