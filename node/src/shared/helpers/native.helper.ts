@@ -17,3 +17,17 @@ export const getArraySize = (array: any[]) => {
     return array.length;
   }
 };
+
+export const arrayIsEmpty = (array: any[]) => {
+  return getArraySize(array) === 0;
+};
+
+export const empty = (raw: any) => {
+  if ("object") {
+    return objectIsEmpty(raw);
+  } else if (Array.isArray(raw)) {
+    return arrayIsEmpty(raw);
+  }
+
+  return Boolean(raw);
+};

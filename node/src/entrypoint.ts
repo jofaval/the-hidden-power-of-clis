@@ -1,12 +1,20 @@
-import { COMMANDS } from "./config/commands.config";
-import { parseArgs } from "./shared/helpers/args.helper";
-import { validateParams } from "./shared/helpers/params.helper";
-import { Args } from "./shared/types/args.type";
-import { VerboseCommand } from "./shared/types/command.type";
+import { HELP_KEY } from "./help/config/help.config";
+import { parseArgs } from "./shared/args/helpers/args.helper";
+import { Args } from "./shared/args/types/args.type";
+import { commandService } from "./shared/commands/services/command.service";
+import { VerboseCommand } from "./shared/commands/types/command.type";
+import {
+  parseArgsFromParams,
+  validParams,
+} from "./shared/params/helpers/params.helper";
 
 const fallback = (args: Args) => {
   console.log("No command provided", { args });
-  COMMANDS.help.entrypoint({ args, command: COMMANDS.help });
+
+  const helpCommand = commandService.findSingleCommand(HELP_KEY);
+  if (helpCommand) {
+    helpCommand.entrypoint({ args, command: helpCommand });
+  }
 };
 
 type InvalidParamsProps = {
@@ -14,31 +22,33 @@ type InvalidParamsProps = {
   command: VerboseCommand;
 };
 
-const invalidParams = ({ args, command }: InvalidParamsProps) => {
-  // TODO: implement more granular effort
+const onInvalidParams = ({ args, command }: InvalidParamsProps) => {
+  // TODO: implement more granular effort/detail
 
   console.log({ args });
 
-  COMMANDS.help.entrypoint({
-    args: { ...args, positional: [command.name] },
-    command: COMMANDS.help,
-  });
+  const helpCommand = commandService.findSingleCommand(HELP_KEY);
+
+  if (helpCommand) {
+    helpCommand.entrypoint({
+      args: { ...args, positional: { command: command.name } },
+      command: helpCommand,
+    });
+  }
 };
 
-function main() {
+export const entrypoint = () => {
   const args = parseArgs(process.argv);
-
-  const command = Object.values(COMMANDS).find(
-    (command) => command.name === args.command
-  );
+  const command = commandService.findSingleCommand(args.command);
 
   if (!command) {
     return fallback(args);
-  } else if (!validateParams({ args, params: command.params })) {
-    return invalidParams({ args, command });
+  } else if (!validParams({ args, params: command.params })) {
+    return onInvalidParams({ args, command });
   } else {
-    return command.entrypoint({ args, command });
+    return command.entrypoint({
+      args: parseArgsFromParams({ args, command }),
+      command,
+    });
   }
-}
-
-main();
+};
