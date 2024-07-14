@@ -52,7 +52,7 @@ magic-cli last-changes
 magic-cli lc
 ```
 
-#### Params
+#### Nombre
 
 - lc -> normal
 - last-changes -> verboso
@@ -67,10 +67,12 @@ magic-cli cg name -t entidad [-e ext]
 Lanzará una excepción si no se reconoce el parámetro después de `code-gen` o `cg`\
 Lanzará una excepción si no existe el directorio base proporcionado
 
-#### Params
+#### Nombre
 
 - cg -> normal
 - code-gen -> verboso
+
+#### Params
 
 - --type, -t
   - Entidad, tipo de elemento, componente, modelo, vista, controlador, etc.
@@ -102,20 +104,20 @@ magic-cli h [comando]
 magic-cli man [comando]
 ```
 
-#### Params
+#### Nombre
 
 - h -> shortcut
 - help -> normal
 - man -> linux-friendly
 
-- sin argumentos
+#### Params
+
+- Sin argumentos
   - Dice que hace la CLI (descripción general)
   - Lista los comandos disponibles
-
-Indicando comando (verboso o no)
-
-- Qué hace el comando
-- Cómo usarlo (parámetros)
+- Indicando comando (verboso o no)
+  - Qué hace el comando
+  - Cómo usarlo (parámetros)
 
 #### Opcional
 
