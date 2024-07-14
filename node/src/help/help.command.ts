@@ -14,6 +14,12 @@ const everyCommand = () => {
   commands.filter(({ name }) => name !== HELP_KEY).forEach(help);
 };
 
+const noSpecificCommand = () => {
+  console.log("TODO: Magic CLI description");
+
+  everyCommand();
+};
+
 const noSingleCommandProvided = (args: HelpArgs) => {
   console.error("No single command provided", { args });
 };
@@ -25,6 +31,8 @@ export type SingleCommandNotFoundProps = {
 
 const singleCommandNotFound = ({ args, query }: SingleCommandNotFoundProps) => {
   console.error(`"${query}" not found`, { args });
+
+  everyCommand();
 };
 
 const singleCommand = (args: HelpArgs) => {
@@ -48,7 +56,7 @@ export const handleHelp = ({
   args,
 }: CommandEntrypointProps<{ args: HelpArgs }>) => {
   if (empty(args.positional)) {
-    everyCommand();
+    noSpecificCommand();
   } else {
     singleCommand(args);
   }
