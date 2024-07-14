@@ -6,6 +6,10 @@ Para saber más contexto de las CLIs y estándares, consulta la sección de [Sab
 
 ## Tabla de Contenido
 
+## CHANGELOG
+
+Registrado en [CHANGELOG.md](./CHANGELOG.md).
+
 ## Lenguajes
 
 Java o Node (TypeScript)
