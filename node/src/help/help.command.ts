@@ -8,10 +8,12 @@ import { hasHelp } from "./helpers/help.helper";
 import { commandService } from "../commands/services/command.service";
 /** Config */
 import { HELP_KEY } from "./config/help.config";
+/** Services */
+import { helpService } from "./services/help.service";
 
 const everyCommand = () => {
   const commands = commandService.getEveryCommand();
-  commands.filter(({ name }) => name !== HELP_KEY).forEach(help);
+  commands.filter(({ name }) => name !== HELP_KEY).forEach(helpService.help);
 };
 
 const noSpecificCommand = () => {
@@ -46,7 +48,7 @@ const singleCommand = (args: HelpArgs) => {
   if (!command) {
     return singleCommandNotFound({ args, query });
   } else if (hasHelp(command)) {
-    return help(command);
+    return helpService.help(command);
   } else {
     console.error("This command does not provide help");
   }

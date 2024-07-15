@@ -8,9 +8,3 @@ export const parseHelp = (command: VerboseCommand) => {
   // TODO: describe params
   return command.help;
 };
-
-export const help = (command: VerboseCommand) => {
-  if (hasHelp(command)) {
-    console.log(parseHelp(command));
-  }
-};
