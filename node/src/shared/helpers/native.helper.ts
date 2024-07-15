@@ -1,4 +1,4 @@
-export const getObjectSize = (obj: Object) => {
+export const getObjectSize = (obj: Object | undefined) => {
   if (!obj || typeof obj !== "object") {
     return 0;
   } else {
@@ -6,11 +6,11 @@ export const getObjectSize = (obj: Object) => {
   }
 };
 
-export const objectIsEmpty = (obj: Object) => {
+export const objectIsEmpty = (obj: Object | undefined) => {
   return getObjectSize(obj) === 0;
 };
 
-export const getArraySize = (array: any[]) => {
+export const getArraySize = (array: any[] | undefined) => {
   if (!Array.isArray(array)) {
     return 0;
   } else {
@@ -18,7 +18,7 @@ export const getArraySize = (array: any[]) => {
   }
 };
 
-export const arrayIsEmpty = (array: any[]) => {
+export const arrayIsEmpty = (array: any[] | undefined) => {
   return getArraySize(array) === 0;
 };
 
