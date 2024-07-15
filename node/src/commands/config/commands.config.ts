@@ -24,8 +24,7 @@ const verboseCommands = <T extends EntrypointConfig>(obj: T) => {
 // referential transparency example, exposed but not modified
 export const COMMANDS = verboseCommands({
   [HELP_KEY]: {
-    // FIXME: entrypoint type
-    entrypoint: handleHelp as any,
+    entrypoint: handleHelp,
     alias: ["man", "h"],
     params: {
       positional: [{ name: "command", optional: true, help: "" }],

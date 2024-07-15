@@ -23,7 +23,7 @@ export type CommandEntrypointProps<
 };
 
 export type Command = {
-  entrypoint: (props: CommandEntrypointProps) => void;
+  entrypoint: (props: CommandEntrypointProps<any>) => void;
   alias?: string[];
   help?: string;
   params?: ParamsConfiguration;
