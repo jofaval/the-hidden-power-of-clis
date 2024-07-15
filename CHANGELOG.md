@@ -9,6 +9,7 @@ But it's format is based in the [Keep a Changelog](https://keepachangelog.com/en
 
 - Setup steps
 - Node's build and run steps
+- Duplicity collision check
 
 ### Modified
 
