@@ -31,3 +31,13 @@ export const empty = (raw: any) => {
 
   return Boolean(raw);
 };
+
+export const remapObject = <
+  T extends Record<string, any>,
+  TKeyValue extends [keyof T, T[keyof T]]
+>(
+  object: T,
+  remap: (value: TKeyValue, index: number, array: TKeyValue[]) => any
+) => {
+  return Object.fromEntries(Object.entries(object).map(remap));
+};

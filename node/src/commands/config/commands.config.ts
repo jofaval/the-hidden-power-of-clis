@@ -5,7 +5,7 @@ import { VALIDATE_KEY } from "../../validate/config/validate.config";
 import { handleHelp } from "../../help/help.command";
 import { handleValidate } from "../../validate/validate.command";
 /** Types */
-import { empty } from "../../shared/helpers/native.helper";
+import { empty, remapObject } from "../../shared/helpers/native.helper";
 import { NamedParam } from "../../shared/params/types/param.type";
 import { Command, EntrypointConfig } from "../types/command.type";
 
@@ -28,20 +28,27 @@ const checkNameDuplicity = (named: NamedParam) => {
   }
 };
 
-const checkCollisions = (value: Command) => {
-  if (!value.params?.named) {
+const checkAbbreviations = (abbreviations: string[] | undefined) => {
+  if (!abbreviations) {
     return;
   }
 
-  for (const named of value.params?.named) {
-    checkNameDuplicity(named);
+  for (const abbreviation of abbreviations) {
+    checkAbbreviationDuplicity(abbreviation);
+  }
+};
 
-    if (!named.abbreviations) {
-      continue;
+const checkCollisions = (value: Command) => {
+  if (value.params?.positional) {
+    for (const positional of value.params?.positional) {
+      checkNameDuplicity(positional);
     }
+  }
 
-    for (const abbreviation of named.abbreviations) {
-      checkAbbreviationDuplicity(abbreviation);
+  if (value.params?.named) {
+    for (const named of value.params?.named) {
+      checkNameDuplicity(named);
+      checkAbbreviations(named.abbreviations);
     }
   }
 };
@@ -50,16 +57,14 @@ export type VerboseCommandsHelper<T extends Object> = {
   [k in keyof T]: T[k] & { name: k };
 };
 
-const verboseCommands = <T extends EntrypointConfig>(obj: T) => {
-  const verbose = Object.fromEntries(
-    Object.entries(obj).map(([name, value]) => {
-      if (!empty(value.params)) {
-        checkCollisions(value);
-      }
+const verboseCommands = <T extends EntrypointConfig>(commands: T) => {
+  const verbose = remapObject(commands, ([name, value]) => {
+    if (!empty(value.params)) {
+      checkCollisions(value);
+    }
 
-      return [name, { ...value, name }];
-    })
-  );
+    return [name, { ...value, name }];
+  });
 
   names.clear();
   abbreviations.clear();
