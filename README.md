@@ -47,6 +47,26 @@ Depende de la cantidad de gente
 
 Nuestra CLI se llamará **`magic-cli`**, lo gestionaremos a nivel de paquete (si lo llegamos a publicar)
 
+## Setup
+
+Usaremos Node (si no lo tienes instalado, NVM te ayudará a futuro)
+
+### PNPM
+
+En vez de usar NPM (Node Package Manager) usaremos PNPM (más seguro y eficiente en disco)
+
+```shell
+npm i -g pnpm
+```
+
+### Install
+
+Ahora instalaremos los paquetes necesarios para poder hacerlo funcionar
+
+```shell
+pnpm install
+```
+
 ## Comandos
 
 ### last-changes
@@ -58,8 +78,8 @@ magic-cli lc
 
 #### Nombre
 
-- lc -> normal
-- last-changes -> verboso
+- lc
+- last-changes
 
 ### code-gen
 
@@ -73,8 +93,8 @@ Lanzará una excepción si no existe el directorio base proporcionado
 
 #### Nombre
 
-- cg -> normal
-- code-gen -> verboso
+- cg
+- code-gen
 
 #### Params
 
@@ -93,7 +113,8 @@ Que se pueda configurar el path sobre el que añadirá código
 
 _Este es sólo de ejemplo_
 
-Será este comando el que indique un path externo que se querrá validar
+Será este comando el que indique un path externo que se querrá validar.
+
 Los ficheros de configuración se leerán a partir de ese directorio, a nivel root desde ahí, es decir, si hay uno anidado se ignorará
 
 #### Opcional
@@ -110,9 +131,9 @@ magic-cli man [comando]
 
 #### Nombre
 
-- h -> shortcut
-- help -> normal
-- man -> linux-friendly
+- h
+- help
+- man
 
 #### Params
 
@@ -159,7 +180,8 @@ Publica el paquete (Node=npm, Java=maven)
 
 ### Verbosidad y logs
 
-Es algo que no se ha contemplado, los logs están hardcodeados y no hay manera de gestionarlos desde fuera\
+Es algo que no se ha contemplado, los logs están hardcodeados y no hay manera de gestionarlos desde fuera
+
 Un log consume tiempo, y además, a veces también ensucia la pantalla, se suelen ofrecer modos quiet (opt-out) o verbose (opt-in)
 
 - opt-in (optionally-in), indicas cuándo **sí** que quieres logs, por defecto será _silencioso_

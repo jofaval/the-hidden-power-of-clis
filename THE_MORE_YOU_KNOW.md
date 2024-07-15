@@ -25,6 +25,8 @@ Y si tuviésemos que hacer que alguno (o varios) de ellos fuese opcional, sería
   - `-` para abreviaciones
   - `--` para el modo verboso
 
+Usar el casing de `kebab-case` es un buen estándar para poder transformar a otros casings y poder separar por palabras
+
 ## Argumentos opcionales
 
 Comúnmente indicados con `[...]`, si está dentro de corchetes se indica un nivel de opcionalidad.
