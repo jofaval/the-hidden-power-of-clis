@@ -1,5 +1,6 @@
-import { Args } from "../../args/types/args.type";
-import { ParamsConfiguration } from "../../params/types/param.type";
+/** Types */
+import { Args } from "../../shared/args/types/args.type";
+import { ParamsConfiguration } from "../../shared/params/types/param.type";
 
 export type CommandEntrypointGenericBag = {
   args?: Args;

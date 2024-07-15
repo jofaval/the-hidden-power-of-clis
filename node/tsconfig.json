@@ -13,5 +13,7 @@
     "module": "NodeNext",
     "outDir": "dist",
     "declaration": true
-  }
+  },
+  "exclude": ["node_modules"],
+  "include": ["src"]
 }

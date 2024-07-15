@@ -1,7 +1,10 @@
-import { HELP_KEY } from "../../../help/config/help.config";
-import { handleHelp } from "../../../help/help.command";
-import { VALIDATE_KEY } from "../../../validate/config/validate.config";
-import { handleValidate } from "../../../validate/validate.command";
+/** Configs */
+import { HELP_KEY } from "../../help/config/help.config";
+import { VALIDATE_KEY } from "../../validate/config/validate.config";
+/** Commands */
+import { handleHelp } from "../../help/help.command";
+import { handleValidate } from "../../validate/validate.command";
+/** Types */
 import { EntrypointConfig } from "../types/command.type";
 
 export type VerboseCommandsHelper<T extends Object> = {
@@ -21,7 +24,8 @@ const verboseCommands = <T extends EntrypointConfig>(obj: T) => {
 // referential transparency example, exposed but not modified
 export const COMMANDS = verboseCommands({
   [HELP_KEY]: {
-    entrypoint: handleHelp,
+    // FIXME: entrypoint type
+    entrypoint: handleHelp as any,
     alias: ["man", "h"],
     params: {
       positional: [{ name: "command", optional: true, help: "" }],

@@ -1,4 +1,4 @@
-import { VerboseCommand } from "../../shared/commands/types/command.type";
+import { VerboseCommand } from "../../commands/types/command.type";
 
 export const hasHelp = (command: VerboseCommand) => {
   return command.help !== undefined;

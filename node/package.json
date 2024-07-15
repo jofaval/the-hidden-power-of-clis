@@ -1,7 +1,9 @@
 {
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build"
+		"build": "tsc",
+		"safe-magic-cli": "npm run build && node ./dist/index.js",
+		"magic-cli": "node ./dist/index.js"
 	},
 	"dependencies": {
 		"@types/node": "^20.14.10",

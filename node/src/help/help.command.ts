@@ -1,11 +1,11 @@
 /** Types */
-import { CommandEntrypointProps } from "../shared/commands/types/command.type";
+import { CommandEntrypointProps } from "../commands/types/command.type";
 import { HelpArgs } from "./types/help.type";
 /** Helpers */
 import { empty } from "../shared/helpers/native.helper";
-import { hasHelp, help } from "./helpers/help.helper";
+import { hasHelp } from "./helpers/help.helper";
 /** Services */
-import { commandService } from "../shared/commands/services/command.service";
+import { commandService } from "../commands/services/command.service";
 /** Config */
 import { HELP_KEY } from "./config/help.config";
 

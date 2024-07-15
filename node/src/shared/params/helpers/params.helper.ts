@@ -1,11 +1,13 @@
+/** Types */
+import { Command } from "../../../commands/types/command.type";
 import { Args } from "../../args/types/args.type";
-import { Command } from "../../commands/types/command.type";
-import { empty } from "../../helpers/native.helper";
 import {
   NamedParam,
   ParamsConfiguration,
   PositionalParam,
 } from "../types/param.type";
+/** Helpers */
+import { empty } from "../../helpers/native.helper";
 
 const VALID = true;
 const INVALID = false;

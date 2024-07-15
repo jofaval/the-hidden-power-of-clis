@@ -1,8 +1,12 @@
+/** Services */
+import { commandService } from "./commands/services/command.service";
+/** Config */
 import { HELP_KEY } from "./help/config/help.config";
-import { parseArgs } from "./shared/args/helpers/args.helper";
+/** Types */
+import { VerboseCommand } from "./commands/types/command.type";
 import { Args } from "./shared/args/types/args.type";
-import { commandService } from "./shared/commands/services/command.service";
-import { VerboseCommand } from "./shared/commands/types/command.type";
+/** Helpers */
+import { parseArgs } from "./shared/args/helpers/args.helper";
 import {
   mapArgsFromParams,
   validParams,
